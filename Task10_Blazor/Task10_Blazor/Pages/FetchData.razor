@@ -1,0 +1,47 @@
+﻿@page "/fetchdata"
+
+@using Models
+
+
+<h1>Products</h1>
+
+
+<br />
+<div class="row">
+	<div class="col-10">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Brand</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var product in products)
+				{
+
+
+					<tr>
+						<td>@product.Id</td>
+						<td>@product.Name</td>
+						<td>@product.Brand</td>
+						<td>@product.Price</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+@code {
+
+	DAL dal = new DAL();
+	private List<Product> products;
+
+	protected override void OnInitialized()
+	{
+		products = dal.GetProducts();
+	}
+}
